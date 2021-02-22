@@ -1,0 +1,27 @@
+$slack-color: rgb(53, 13, 54);
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+
+  font-size: 12px;
+  padding: 8px 10px;
+  opacity: 0.9;
+  
+  cursor: pointer;
+
+  &:hover {
+    background-color: #{$slack-color};
+    opacity: 0.6;
+  }
+
+  &__icon {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+  &__hash {
+    margin-left: 3px;
+    margin-right: 10px;
+    font-size: 15px;
+  }
+}

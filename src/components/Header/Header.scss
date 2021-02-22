@@ -1,0 +1,44 @@
+$slack-color: rgb(53, 13, 54);
+
+.header {
+  $header: &;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px 0;
+  background-color: #{$slack-color};
+  color: #fff;
+  border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+
+  &__search {
+    flex: 0.9 1;
+
+    display: flex;
+    justify-content: center;
+
+    input {
+      padding-left: 1rem;
+      border: 1px solid rgba($color: #fff, $alpha: 0.8);
+      border-radius: 5px;
+      background-color: rgb(73, 37, 74);
+      color: #fff;
+
+      min-width: 35vw;
+    }
+
+    #{$header}__access-icon {
+      margin-right: 1.25rem;
+      cursor: pointer;
+    }
+    #{$header}__help-icon {
+      margin-left: 1.25rem;
+      cursor: pointer;
+    }
+  }
+
+  &__right {
+    flex: 0.1 1;
+    margin-right: 1.5rem;
+  }
+}

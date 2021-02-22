@@ -1,0 +1,50 @@
+$sidebar-color: rgb(63, 14, 64);
+$sidebar: ".sidebar";
+
+.sidebar {
+  background-color: #{$sidebar-color};
+  color: #fff;
+
+  flex: 0.3;
+  max-width: 13em;
+  
+  &__header {
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+    border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+
+    #{$sidebar}__info {
+      flex: 1;    
+  
+      h2 {
+        font-size: 15px;
+        line-height: 32px;
+        font-weight: 900;
+      }
+  
+      h3 {
+        font-size: 13px;
+        font-weight: 400;
+  
+        display: flex;
+        align-items: center;
+  
+        & > .MuiSvgIcon-root {
+          font-size: 14px;
+          color: green;
+        }
+      }
+    }
+
+    & > .MuiSvgIcon-root {
+      color: #{$sidebar-color};
+      background-color: #fff;
+  
+      padding: 5px;
+      font-size: 2rem;
+      border-radius: 50%;
+    }
+  }
+}
