@@ -1,12 +1,13 @@
-import React from 'react'
-import './Header.scss'
-import PropTypes from 'prop-types'
 import { Avatar } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import SearchIcon from '@material-ui/icons/Search';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import React from 'react';
+import { useStateValue } from '../../context/StateProvider';
+import './Header.scss';
 
 function Header(props) {
+  const [{ user }] = useStateValue();
+
   return (
     <div className="header">
       <div className="header__search">
@@ -18,10 +19,8 @@ function Header(props) {
       <div className="header__right">
       <Avatar 
           className="header__avatar"
-          // alt={user?.displayName}
-          // src={user?.photoURL}
-          alt="Me"
-          src=""
+          alt={user?.displayName}
+          src={user?.photoURL}
         />
       </div>
     </div>

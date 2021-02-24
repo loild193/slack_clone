@@ -1,22 +1,45 @@
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Chat from './components/Chat/Chat';
+import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import Sidebar from './components/Sidebar/Sidebar';
+import { actionType } from './context/reducer';
+import { useStateValue } from './context/StateProvider';
 
 function App() {
+  const [{ user }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      dispatch({
+        type: actionType.SET_USER,
+        payload: JSON.parse(localStorage.getItem('user')),
+      })
+    }
+    else {
+      // window.location.href = '/sign-in'
+    }
+  }, []);
+
   return (
     <div className="App">
       <Router>
-        <Header />
+      {
+        !user ? <Login /> : 
+        <>
+          <Header />
 
-        <div className="app__body">
-          <Sidebar />
-          <Switch>
-            <Route path="/room/:roomId" component={Chat} />
-            {/* <Route exact path="/" component={App} /> */}
-          </Switch>
-        </div>
+          <div className="app__body">
+            <Sidebar />
+            <Switch>
+              <Route path="/room/:roomId" component={Chat} />
+              <Route path="/sign-in" component={Login} />
+            </Switch>
+          </div>
+        </>
+      }
       </Router>
     </div>
   );

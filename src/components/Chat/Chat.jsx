@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import './Chat.scss'
-import { useParams } from 'react-router-dom'
 import { InfoOutlined, PersonAdd, StarBorderOutlined } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import db from '../../firebase';
+import ChatInput from '../ChatInput/ChatInput';
 import Message from '../Message/Message';
+import './Chat.scss';
 
 function Chat(props) {
   const { roomId } = useParams();
@@ -28,8 +28,6 @@ function Chat(props) {
          )
     } 
   }, [roomId]);
-
-  console.log(roomMessages)
 
   return (
     <div className="chat">
@@ -58,6 +56,8 @@ function Chat(props) {
           )
         }
       </div>
+
+      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
     </div>
   )
 }
