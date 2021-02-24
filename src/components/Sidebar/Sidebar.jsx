@@ -24,6 +24,7 @@ function Sidebar(props) {
           name: doc.data().name,
         })))
     ));
+    return setChannels([])
   }, []);
 
   return (
@@ -49,13 +50,14 @@ function Sidebar(props) {
       <SidebarOption Icon={ArrowRightIcon} title="Channels" />
       {
         channels.map(channel => 
-        <SidebarOption 
-          key={channel.id} 
+        <SidebarOption
+          key={channel.id}
+          id={channel.id} 
           title={channel.name}
         />
         )
       }
-      <SidebarOption Icon={AddIcon} title="Add new channel" />
+      <SidebarOption addChannelOption Icon={AddIcon} title="Add new channel" />
       <hr />
       <SidebarOption Icon={ArrowRightIcon} title="Direct messeages" />
       <SidebarOption Icon={AddIcon} title="Add new teammate" />
