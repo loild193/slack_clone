@@ -9,7 +9,7 @@
     & > input {
       position: fixed;
       bottom: 30px;
-      width: 75%;
+      width: 70%;
       border: 1px solid gray;
       border-radius: 4px;
       padding: 20px;
@@ -17,6 +17,17 @@
 
     & > button {
       display: none !important;
+    }
+  }
+}
+
+@media (max-width: 575.98px) { 
+  .chatInput {
+    & > form {
+      & > input {
+        bottom: 0px;
+        padding: 15px;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import { InfoOutlined, PersonAdd, StarBorderOutlined } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import db from '../../firebase';
 import ChatInput from '../ChatInput/ChatInput';
@@ -10,6 +10,9 @@ function Chat(props) {
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState(null);
+
+  const chatRef = useRef(null);
+  const chatMessageRef = useRef(null);
 
   useEffect(() => {
     if (roomId) {
@@ -25,12 +28,20 @@ function Chat(props) {
         .orderBy('timestamp', 'asc')
         .onSnapshot(snapshot => 
           setRoomMessages(snapshot.docs.map(doc => doc.data()))
-         )
+        )
     } 
   }, [roomId]);
 
+  useEffect(() => {
+    chatRef.current.scrollTo(0, 0);
+    chatMessageRef.current.scrollTo({
+      top: chatMessageRef.current.scrollHeight + 1,
+      behavior: 'smooth',
+    })
+  }, [roomMessages])
+
   return (
-    <div className="chat">
+    <div className="chat" ref={chatRef}>
       <div className="chat__header">
         <div className="chat__header__left">
           <h4 className="chat__channel-name">#{roomDetails?.name}</h4>
@@ -43,7 +54,7 @@ function Chat(props) {
         </div>
       </div>
 
-      <div className="chat__message">
+      <div className="chat__message" ref={chatMessageRef}>
         {
           roomMessages?.map(({ message, timestamp, username, userImage}) => 
             <Message

@@ -1,8 +1,7 @@
 .chat {
   flex: 0.7;
   flex-grow: 1;
-  overflow-y: scroll;
-  padding-bottom: 150px;
+  padding-bottom: 190px;
 
   &__header {
     display: flex;
@@ -49,5 +48,15 @@
     .MuiSvgIcon-root {
       cursor: pointer;
     }
+  }
+
+  &__message {
+    overflow-y: scroll;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+      }
   }
 }

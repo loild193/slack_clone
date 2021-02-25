@@ -18,9 +18,6 @@ function App() {
         payload: JSON.parse(localStorage.getItem('user')),
       })
     }
-    else {
-      // window.location.href = '/sign-in'
-    }
   }, []);
 
   return (
