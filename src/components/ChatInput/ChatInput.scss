@@ -4,19 +4,21 @@
   & > form {
     position: relative;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
 
     & > input {
       position: fixed;
-      bottom: 30px;
-      width: 70%;
+      // bottom: 30px;
+      width: 65%;
       border: 1px solid gray;
       border-radius: 4px;
       padding: 20px;
     }
 
     & > button {
-      display: none !important;
+      position: fixed !important;
+      right: 25px !important;
+      bottom: 12px !important;
     }
   }
 }
@@ -27,6 +29,11 @@
       & > input {
         bottom: 0px;
         padding: 15px;
+      }
+
+      & > button {
+        right: -10px !important;
+        bottom: 5px !important;
       }
     }
   }

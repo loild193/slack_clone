@@ -16,13 +16,13 @@ function SidebarOption({Icon, title, addChannelOption, id}) {
       })
   }
   const selectChannel = () => {
-    id ? history.push(`/room/${id}`) : history.push(title);
+    id && history.push(`/room/${id}`)
   }
 
   return (
     <div 
       className="sidebarOption"
-      onClick={addChannelOption ? addChannel :selectChannel}
+      onClick={addChannelOption ? addChannel : selectChannel}
     >
       { Icon && <Icon className="sidebarOption__icon" />}
       { 

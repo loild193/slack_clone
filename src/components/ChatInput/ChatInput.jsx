@@ -1,26 +1,30 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import './ChatInput.scss'
-import { Button } from '@material-ui/core'
+import { Button } from '@material-ui/core';
+import Send from '@material-ui/icons/Send';
+import firebase from 'firebase';
+import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 import { useStateValue } from '../../context/StateProvider';
 import db from '../../firebase';
-import firebase from 'firebase';
-function ChatInput({ channelName, channelId}) {
-  const [input, setInput] = useState("");
+import './ChatInput.scss';
+function ChatInput({ channelName, channelId, room }) {
+  const inputRef = useRef(null);
   const [{ user }] = useStateValue();
 
   const sendMessage = (e) => {
     e.preventDefault();
 
     if (channelId) {
-      db.collection('rooms').doc(channelId).collection('messages').add({
-        message: input,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        username: user.displayName,
-        userImage: user.photoURL,
-      })
-      .then(() => setInput(""))
-      .catch(err => alert(err.message));
+      db.collection(room ? 'rooms' : 'teammates')
+        .doc(channelId)
+        .collection('messages')
+        .add({
+          message: inputRef.current.value,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          username: user.displayName,
+          userImage: user.photoURL,
+        })
+        .then(() => inputRef.current.value = "")
+        .catch(err => alert(err.message));
     }
   }
 
@@ -28,13 +32,13 @@ function ChatInput({ channelName, channelId}) {
     <div className="chatInput">
       <form>
         <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          ref={inputRef}
+          onChange={(e) => inputRef.current.value = e.target.value}
           type="text" 
-          placeholder={`Message #${channelName}`}
+          placeholder={`Message to ${channelName}`}
         />
         <Button type="submit" onClick={sendMessage}>
-          Send
+          <Send />
         </Button>
       </form>
     </div>
@@ -44,10 +48,12 @@ function ChatInput({ channelName, channelId}) {
 ChatInput.propTypes = {
   channelName: PropTypes.string,
   channelId: PropTypes.string,
+  room: PropTypes.bool,
 }
 ChatInput.defaultProps = {
   channelName: "",
   channelId: null,
+  room: false,
 }
 
 export default ChatInput

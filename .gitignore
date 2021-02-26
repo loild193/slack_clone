@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# secure file
+/src/slack-clone-40e0f-firebase-adminsdk-oaw4m-3eb6535b7a.json
+
 # testing
 /coverage
 

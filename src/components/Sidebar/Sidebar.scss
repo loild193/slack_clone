@@ -47,4 +47,14 @@ $sidebar: ".sidebar";
       border-radius: 50%;
     }
   }
+
+  &__messages {
+    overflow-y: scroll;
+    border-top: 2px solid gray;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+  }
 }

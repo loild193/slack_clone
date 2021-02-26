@@ -1,7 +1,7 @@
 .chat {
   flex: 0.7;
   flex-grow: 1;
-  padding-bottom: 190px;
+  padding-bottom: 163px; // 190px
 
   &__header {
     display: flex;
@@ -17,6 +17,9 @@
       align-items: center;
 
       & > .chat__channel-name {
+        display: flex;
+        align-items: center;
+        
         margin-right: 0.25rem;
         text-transform: lowercase;
         cursor: pointer;
@@ -57,6 +60,6 @@
     &::-webkit-scrollbar {
       width: 0px;
       background: transparent;
-      }
+    }
   }
 }

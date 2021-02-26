@@ -40,5 +40,15 @@ $slack-color: rgb(53, 13, 54);
   &__right {
     flex: 0.1 1;
     margin-right: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+    .header__avatar {
+      transition: all 0.4s ease-in-out 0s;
+    }
+    &:hover .header__avatar {
+      opacity: 0.7;
+    }
   }
 }

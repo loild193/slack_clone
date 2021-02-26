@@ -31,7 +31,8 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Switch>
-              <Route path="/room/:roomId" component={Chat} />
+              <Route path="/teammate/:teammateId" render={() => <Chat room={false} />} />
+              <Route path="/room/:roomId" render={() => <Chat room />} />
               <Route path="/sign-in" component={Login} />
             </Switch>
           </div>
